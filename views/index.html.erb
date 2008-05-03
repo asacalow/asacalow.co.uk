@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="bubble">
-  <%=h @post.text %>
+  <%= CGI.unescape @post.text %>
 </div>
 </body>
 </html>
