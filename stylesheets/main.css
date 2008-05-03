@@ -1,0 +1,26 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: url(../images/background.gif);
+	background-repeat: repeat-x;
+	background-color: #d1ffff;
+	font-family: Helvetica, Sans-serif;
+	font-size: 16px;
+}
+
+#bubble {
+	position: relative;
+	left: 50%;
+	margin-left: -10em;
+	margin-top: 10em;
+	width: 20em;
+	background-color: #fff;
+	padding: 1em;
+}
+
+#bubble ul {
+	list-style: none;
+}
