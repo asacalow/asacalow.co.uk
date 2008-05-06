@@ -6,10 +6,14 @@ class Main < Merb::Controller
 
   def index
     begin
-      @post = $cache.get('tweet')
+      @posts = $cache.get('tweet')
     rescue Memcached::NotFound
-      @post = latest_twitter_post
-      $cache.set('tweet', @post, 60)
+      begin
+        @posts = latest_twitter_posts
+        $cache.set('tweet', @posts, 60)
+      rescue Twitter::CantConnect
+        @post = DummyPost.new('Ooops! Looks like the Twitter API is not responding. Come back in a bit!')
+      end
     end
     
     render
@@ -17,13 +21,23 @@ class Main < Merb::Controller
   
   private
   
-  def latest_twitter_post
+  def latest_twitter_posts
     y = YAML.load_file('config/twitter.yml')
     twitter_config = y[:twitter]
     
     twitter = Twitter::Base.new(twitter_config[:email], twitter_config[:password])
     timeline = twitter.timeline(:user)
-    return timeline.first
+    return timeline[0..2]
+  end
+  
+  # Dummy internal class
+  
+  class DummyPost
+    attr_accessor :text
+    
+    def initialize(txt)
+      self.text = txt
+    end
   end
   
 end

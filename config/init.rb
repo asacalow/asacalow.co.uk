@@ -18,6 +18,8 @@ Merb::Config.use { |c|
   c[:reload_time]         = 0.5
 }
 
+dependency "merb_helpers"
+
 Merb::BootLoader.after_app_loads do
   # require everything
   require "twitter"

@@ -11,16 +11,44 @@ body {
 	font-size: 16px;
 }
 
-#bubble {
+#container {
 	position: relative;
 	left: 50%;
-	margin-left: -10em;
+	margin-left: -11.5em;
 	margin-top: 10em;
-	width: 20em;
-	background-color: #fff;
-	padding: 1em;
+	width: 23em;
+}
+
+#logo {
+	float: left;
+}
+
+#bubble {
+	float: right;
+	width: 23em;
+}
+
+#bubble .inner {
+	background-image: url(../images/bubble-background.png);
+	background-position: top;
+	background-repeat: no-repeat;
+	padding: 1em 1em 0 1em;
+}
+
+#bubble .footer {
+	background-image: url(../images/bubble-background.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	height: 1.5em;
 }
 
 #bubble ul {
 	list-style: none;
+}
+#bubble li {
+	padding-bottom: 1em;
+}
+#bubble li .time-ago {
+	font-size: 14px;
+	color: #ccc;
 }

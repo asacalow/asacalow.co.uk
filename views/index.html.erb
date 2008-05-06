@@ -6,8 +6,19 @@
 <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
 </head>
 <body>
-<div id="bubble">
-  <%= CGI.unescapeHTML @post.text %>
+<div id="container">
+  <!--<img src="images/logo.png" alt="Asa" id="logo" />-->
+  <div id="bubble">
+    <div class="inner">
+      <ul><% @posts.each do |post| %>
+        <li>
+          <%= CGI.unescapeHTML post.text %>
+          <span class="time-ago"><%= time_ago_in_words post.created_at %> ago.</span>
+        </li>
+      <% end %></ul>
+    </div>
+    <div class="footer"></div>
+  </div>
 </div>
 </body>
 </html>
