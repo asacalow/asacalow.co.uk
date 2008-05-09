@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>asacalow.co.uk</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+<body>
+<div id="container">
+  <!--<img src="images/logo.png" alt="Asa" id="logo" />-->
+  <div id="bubble">
+    <div class="inner">
+      <ul><% @posts.each do |post| %>
+        <li>
+          <%= textilise post.text %>
+          <span class="time-ago"><%= time_ago_in_words post.created_at %> ago.</span>
+        </li>
+      <% end %></ul>
+      <a href="http://twitter.com/asacalow" class="more">More</a>
+    </div>
+    <div class="footer"></div>
+  </div>
+</div>
+</body>
+</html>
