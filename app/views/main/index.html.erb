@@ -12,7 +12,7 @@
     <div class="inner">
       <ul><% @posts.each do |post| %>
         <li>
-          <%= textilise post.text %>
+          <%= linkify post.text %>
           <span class="time-ago"><%= time_ago_in_words post.created_at %> ago.</span>
         </li>
       <% end %></ul>
