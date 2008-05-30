@@ -1,7 +1,7 @@
 default_run_options[:pty] = true
 
 set :application, "asacalow.co.uk"
-set :repository,  "git@asacalow.co.uk:asacalow.git"
+set :repository,  "git://github.com/asacalow/asacalow.co.uk.git"
 
 set :user, "asacalow"
 
@@ -18,22 +18,32 @@ set :log_path, "#{shared_path}/log/production.log"
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
 set :scm, :git
-set :scm_passphrase, "Ch0ck5Aw4y!!"
 set :deploy_via, :remote_cache
 
 role :app, "asacalow.co.uk"
 role :web, "asacalow.co.uk"
 role :db,  "asacalow.co.uk", :primary => true
 
-deploy.task :start do
-  run "cd #{current_path}; merb -a #{adapter} -c #{processes} -L #{log_path}"
+after 'deploy:update', 'twitter:upload_config'
+
+namespace "deploy" do
+  task :start do
+    run "cd #{current_path}; merb -a #{adapter} -c #{processes} -L #{log_path}"
+  end
+
+  task :stop do
+    run "cd #{current_path};merb -a #{adapter} -k all"
+  end
+
+  task :restart do
+    stop
+    start
+  end
 end
 
-deploy.task :stop do
-  run "cd #{current_path};merb -a #{adapter} -k all"
-end
-
-deploy.task :restart do
-  stop
-  start
+namespace "twitter" do
+  desc "Upload your Twitter config to the server"
+  task :upload_config do
+    upload "config/twitter.yml", "#{current_path}/config/twitter.yml"
+  end
 end

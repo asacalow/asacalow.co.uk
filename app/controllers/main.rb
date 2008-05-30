@@ -10,6 +10,8 @@ class Main < Application
       rescue Twitter::CantConnect
         @posts = [DummyPost.new('Ooops! Looks like the Twitter API is not responding. Come back in a bit!')]
       end
+    rescue Memcached::ATimeoutOccurred  
+      @posts = [DummyPost.new('Oops! Looks like the Twitter cache is out to lunch. Phone Asa and tell him to mend it.')]
     end
     
     render
@@ -33,6 +35,10 @@ class Main < Application
     
     def initialize(txt)
       self.text = txt
+    end
+    
+    def created_at
+      DateTime.now.to_date
     end
   end
   
