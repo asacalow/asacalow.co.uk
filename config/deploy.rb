@@ -38,6 +38,14 @@ namespace "deploy" do
   task :restart do
     stop
     start
+    apache.restart
+  end
+  
+  desc "Restart apache"
+  namespace "apache" do
+    task :restart do
+      sudo "/etc/init.d/apache2 restart"
+    end
   end
 end
 
