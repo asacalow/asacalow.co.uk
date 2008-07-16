@@ -24,8 +24,9 @@ dependency "merb_helpers"
 
 Merb::BootLoader.after_app_loads do
   # require everything
-  require "twitter"
-  require "yaml"
+  require "simple-rss"
+  require "open-uri"
+  require "cgi"
   require "memcached"
   require "redcloth"
   
