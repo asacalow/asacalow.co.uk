@@ -2,3 +2,32 @@ body {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 16px;
 }
+a {
+	color: blue;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+#central-column {
+	width: 40em;
+	position: relative;
+	left: 50%;
+	margin-top: 6em;
+	margin-left: -20em;
+}
+
+.column {
+	width: 17.9em;
+	padding: 1em;
+	float: left;
+}
+
+#twitter {
+	border-right: 1px solid black;
+	margin-right: -1px;
+}
+#github {
+	border-left: 1px solid black;
+}

@@ -1,13 +1,15 @@
-<div id="twitter">
-  <h3>Twitter</h3>
-  <%= linkify @twitter.text %>
-  <span class="time-ago"><%= time_ago_in_words @twitter.created_at %> ago.</span>
-  <a href="http://twitter.com/asacalow" class="more">More</a>
-</div>
+<div id="central-column"
+  <div id="twitter" class="column">
+    <h3>Twitter</h3>
+    <p><%= linkify @twitter.text %></p>
+    <%= time_ago_in_words @twitter.created_at %> ago.
+    <a href="http://twitter.com/asacalow">More</a>
+  </div>
 
-<div id="github">
-  <h3>Github</h3>
-  <%= CGI.unescapeHTML @github.text %>
-  <span class="time-ago"><%= time_ago_in_words @github.created_at %> ago.</span>
-  <a href="http://github.com/asacalow" class="more">More</a>
+  <div id="github" class="column">
+    <h3>Github</h3>
+    <%= CGI.unescapeHTML @github.text %>
+    <%= time_ago_in_words @github.created_at %> ago.
+    <a href="http://github.com/asacalow">More</a>
+  </div>
 </div>
